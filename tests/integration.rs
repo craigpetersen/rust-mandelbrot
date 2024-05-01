@@ -1,12 +1,13 @@
-use utils;
+#[path="../src/utils.rs"]
+mod utils;
 
+use utils::write_image;
 #[test]
 fn it_writes_image() {
-
     let filename = "test.png";
-    let pixels = [255,255,255];
-    let bounds = (2,2);
-    let mut image = write_image(filename, pixels, bounds);
-
-    assert_eq!(image, Ok(()))
+    let bounds: (usize, usize) = (10, 10);
+    let pixels: Vec<u8> = vec![0, 100];
+    let e = write_image(&filename, &pixels, bounds);
+    
+    assert_eq!(e.is_err(), true);
 }
